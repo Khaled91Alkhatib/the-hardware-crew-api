@@ -1,8 +1,26 @@
+require("dotenv").config();
+
 const express = require('express');
 const app = express();
 const cors = require("cors");
-require("dotenv").config();
 const PORT = 5001 || process.env.PORT;
+
+const { Client } = require('pg');
+const db = new Client({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME
+});
+db.connect();
+
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.use(express.json());
+
+const productsRoute = require("./routes/products");
+
+app.use("/api/products", productsRoute(db));
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
