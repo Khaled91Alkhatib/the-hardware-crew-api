@@ -1,3 +1,3 @@
-INSERT INTO categories (category) VALUES ('mouse');
-INSERT INTO categories (category) VALUES ('keyboard');
-INSERT INTO categories (category) VALUES ('headphone');
+INSERT INTO categories (category) VALUES ('mice');
+INSERT INTO categories (category) VALUES ('keyboards');
+INSERT INTO categories (category) VALUES ('headsets');
