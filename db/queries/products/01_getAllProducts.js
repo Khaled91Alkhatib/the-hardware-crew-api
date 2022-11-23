@@ -2,9 +2,11 @@ const getAllProducts = (db) => {
   return db.query(`
     SELECT
     products.id as id,
+    products.sku as sku,
     categories.id as category_id,
     categories.category as category,
     colors.id as color_id,
+    colors.color as color,
     products.name as name,
     products.description as description,
     products.image1 as image1,
