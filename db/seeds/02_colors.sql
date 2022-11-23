@@ -1,3 +1,3 @@
-INSERT INTO colors (color) VALUES ('black');
-INSERT INTO colors (color) VALUES ('white');
-INSERT INTO colors (color) VALUES ('yellow');
+INSERT INTO colors (color) VALUES ('Black');
+INSERT INTO colors (color) VALUES ('White');
+INSERT INTO colors (color) VALUES ('Yellow');
