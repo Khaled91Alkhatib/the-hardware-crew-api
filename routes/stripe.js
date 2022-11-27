@@ -23,7 +23,7 @@ router.post('/create-checkout-session', async (req, res) => {
           //   color: item.color
           // }
         },
-        unit_amount: item.price,
+        unit_amount: (item.price * 0.13) + item.price,
       },
       quantity: item.quantity,
     };
