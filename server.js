@@ -23,7 +23,7 @@ const productsRoute = require("./routes/products");
 const stripe = require("./routes/stripe");
 
 app.use("/api/products", productsRoute(db));
-app.use("/api/stripe", stripe);
+app.use("/create-checkout-session", stripe());
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
