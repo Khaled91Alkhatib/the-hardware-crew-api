@@ -27,12 +27,32 @@ module.exports = (db) => {
     addUsers(db, username, password)
       .then(data => {
         const newUser = data.rows[0];
-        // console.log(newUser);
+        console.log(newUser);
         res.json({ newUser });
       })
       .catch(err => {
         res.status(500).json(`error: ${err.message}`);
       });
+  });
+
+  router.post("/login", (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
+
+    db.query(
+      "SELECT * FROM users WHERE name = $1 AND password = $2", [username, password],
+      (err, result) => {
+        if (err) {
+          res.send({ err: err });
+        }
+
+        if (result) {
+          res.send(result);
+        } else {
+          res.send({ message: "Invalid Credentials!" });
+        }
+      }
+    );
   });
 
   return router;
