@@ -22,10 +22,12 @@ app.use(express.json());
 const productsRoute = require("./routes/products");
 const stripe = require("./routes/stripe");
 const users = require("./routes/users");
+const specifications = require("./routes/specifications");
 
 app.use("/api/products", productsRoute(db));
 app.use("/create-checkout-session", stripe());
 app.use("/users", users(db));
+app.use("/specifications", specifications(db));
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
