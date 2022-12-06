@@ -4,6 +4,7 @@ const router = express.Router();
 const { getAllProducts } = require('../db/queries/products/01_getAllProducts');
 const { getProductById } = require('../db/queries/products/04_getProductById');
 const { addNewProduct } = require('../db/queries/products/05_addNewProduct');
+const { findProductBySku } = require('../db/queries/products/06_findProductBySku');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -47,20 +48,19 @@ module.exports = (db) => {
     const price = req.body.price;
     const display = req.body.display;
 
-    addNewProduct(db, sku, category, color, name, description, image1, image2, image3, price, display)
-      .then(data => {
-        console.log('data', data);
-        // if (sku === "" ||
-        //   category === "" ||
-        //   color === "" ||
-        //   name === "" ||
-        //   description === "" ||
-        //   image1 === null ||
-        //   price === ""
-        // ) {
-        //   res.json({ errCode: 1001, errMsg: `Error: Please fill required fields!` });
-        //   return
-        // }
+    // If findProductBySku return undefined, it means that sku doesn't exist (product doesnt exist)
+    findProductBySku(db, sku)
+      .then((data) => {
+        console.log('data', data.rows[0]);
+        if (!data.rows[0]) {
+          addNewProduct(db, sku, category, color, name, description, image1, image2, image3, price, display)
+            .then(product => {
+              console.log('product', product);
+              res.json({newProduct: product.rows[0]})
+            });
+        } else {
+          res.json({errCode: 1001, errMsg: 'Error, product already exists'})
+        }
       })
       .catch(err => {
         res.status(500).json(`error: ${err.message}`);
