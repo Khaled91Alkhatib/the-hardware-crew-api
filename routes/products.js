@@ -51,15 +51,15 @@ module.exports = (db) => {
     // If findProductBySku return undefined, it means that sku doesn't exist (product doesnt exist)
     findProductBySku(db, sku)
       .then((data) => {
-        console.log('data', data.rows[0]);
+        // console.log('data', data.rows[0]);
         if (!data.rows[0]) {
           addNewProduct(db, sku, category, color, name, description, image1, image2, image3, price, display)
             .then(product => {
-              console.log('product', product);
-              res.json({newProduct: product.rows[0]})
+              // console.log('product', product);
+              res.json({ newProduct: product.rows[0] });
             });
         } else {
-          res.json({errCode: 1001, errMsg: 'Error, product already exists'})
+          res.json({ errCode: 1001, errMsg: 'Error, product already exists' });
         }
       })
       .catch(err => {
