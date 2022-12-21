@@ -5,7 +5,7 @@ const addNewProduct = (db, sku, category, color, name, description, image1, imag
   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
   RETURNING *;`, [sku, category, color,
     name, description, image1, image2,
-    image3, price, display]);
+    image3, price * 100, display]);
 };
 
 module.exports = { addNewProduct };
