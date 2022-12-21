@@ -5,6 +5,7 @@ const { getAllProducts } = require('../db/queries/products/01_getAllProducts');
 const { getProductById } = require('../db/queries/products/04_getProductById');
 const { addNewProduct } = require('../db/queries/products/05_addNewProduct');
 const { findProductBySku } = require('../db/queries/products/06_findProductBySku');
+const { updateProductById } = require('../db/queries/products/07_updateProductById');
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -64,6 +65,25 @@ module.exports = (db) => {
       })
       .catch(err => {
         res.status(500).json(`error: ${err.message}`);
+      });
+  });
+
+  router.put("/:id", (req, res) => {
+    // console.log(req.body);
+    const product = req.body.product;
+    const id = req.params.id;
+
+    // console.log("id", id)
+    // console.log("product", product)
+    updateProductById(db, id, { ...product, price: Number(product.price) })
+      .then((data) => {
+        // console.log(data);
+        res.json(data.rows[0]);
+        // return getProductById(db, data.rows[0].id)
+      })
+      .catch(err => {
+        // console.log(err);
+        res.status(500).json({ error: err.message });
       });
   });
 
