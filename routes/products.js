@@ -78,7 +78,10 @@ module.exports = (db) => {
     updateProductById(db, id, { ...product, price: Number(product.price) })
       .then((data) => {
         // console.log(data);
-        res.json(data.rows[0]);
+        getAllProducts(db)
+          .then((newProducts) => {
+            res.json(newProducts.rows);
+          });
         // return getProductById(db, data.rows[0].id)
       })
       .catch(err => {
