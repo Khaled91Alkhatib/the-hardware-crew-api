@@ -37,7 +37,7 @@ module.exports = (db) => {
   });
 
   router.post("/", (req, res) => {
-    console.log('new product', req.body);
+    // console.log('new product', req.body);
     const sku = req.body.sku;
     const category = req.body.category;
     const color = req.body.color;
