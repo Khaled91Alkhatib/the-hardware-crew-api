@@ -64,8 +64,8 @@ module.exports = () => {
       },
       line_items,
       mode: 'payment',
-      success_url: 'http://localhost:3000/thankyou',
-      cancel_url: 'http://localhost:3000/shoppingcart',
+      success_url: `${process.env.SITEURL}/thankyou` || 'http://localhost:5001/thankyou',
+      cancel_url: `${process.env.SITEURL}/shoppingcart` || 'http://localhost:5001/shoppingcart',
     });
 
     res.send(JSON.stringify({ url: session.url }));
