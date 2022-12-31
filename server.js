@@ -3,7 +3,7 @@ require("dotenv").config();
 const express = require('express');
 const app = express();
 const cors = require("cors");
-const PORT = 5001 || process.env.PORT;
+const PORT = process.env.PORT || 5001;
 
 
 const { Client } = require('pg');
