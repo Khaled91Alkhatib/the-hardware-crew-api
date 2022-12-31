@@ -35,7 +35,7 @@ module.exports = (db) => {
         res.status(500).json(`error: ${err.message}`);
       });
   });
-  
+
 
   router.post("/", (req, res) => {
     // console.log('new product', req.body);
@@ -58,7 +58,12 @@ module.exports = (db) => {
           addNewProduct(db, sku, category, color, name, description, image1, image2, image3, price, display)
             .then(product => {
               // console.log('product', product);
-              res.json({ newProduct: product.rows[0] });
+              getAllProducts(db)
+                .then((newProducts) => {
+                  // console.log("newproducts", newProducts.rows)
+                  res.json({ newProducts: newProducts.rows });
+                });
+              // res.json({ newProduct: product.rows[0] });
             });
         } else {
           res.json({ errCode: 1001, errMsg: 'Error, product already exists' });
