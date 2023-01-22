@@ -71,9 +71,5 @@ module.exports = () => {
     res.send(JSON.stringify({ url: session.url }));
   });
 
-  // router.get('/create-checkout-session', (req, res) => {
-  //   res.json(req.body);
-  // });
-
   return router;
 };
