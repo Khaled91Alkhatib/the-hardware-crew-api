@@ -88,7 +88,6 @@ module.exports = (db) => {
           .then((newProducts) => {
             res.json(newProducts.rows);
           });
-        // return getProductById(db, data.rows[0].id)
       })
       .catch(err => {
         // console.log(err);
