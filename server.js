@@ -23,7 +23,6 @@ const stripe = require("./routes/stripe");
 const users = require("./routes/users");
 const specifications = require("./routes/specifications");
 
-
 app.use("/api/products", productsRoute(db));
 app.use("/create-checkout-session", stripe());
 app.use("/users", users(db));
