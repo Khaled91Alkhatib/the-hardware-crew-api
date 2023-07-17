@@ -64,6 +64,7 @@ module.exports = (db) => {
                   res.json({ newProducts: newProducts.rows });
                 });
               // res.json({ newProduct: product.rows[0] });
+              
             });
         } else {
           res.json({ errCode: 1001, errMsg: 'Error, product already exists' });
