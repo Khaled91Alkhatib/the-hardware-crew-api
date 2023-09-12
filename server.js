@@ -14,6 +14,7 @@ const db = new Client({
 });
 db.connect();
 
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
