@@ -22,6 +22,7 @@ module.exports = (db) => {
       });
   });
 
+  
   router.get("/:id", (req, res) => {
     const currentId = req.params.id;
     const productById = getProductById(db, currentId);
